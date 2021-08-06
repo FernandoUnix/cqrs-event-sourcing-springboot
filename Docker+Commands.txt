@@ -1,0 +1,36 @@
+NB: Windows users please remove sudo at the start of each command, and run command prompt or powershell as administrator.
+
+# building docker images for the rest of the microservices (Excecute command in directory where Dockerfile of each project is located)
+sudo docker build -t user-cmd-api .
+sudo docker build -t user-query-api .
+sudo docker build -t bankacc-cmd-api .
+sudo docker build -t bankacc-query-api .
+sudo docker build -t api-gateway .
+
+# run one or more docker containers with docker compose (Execute command in directory where docker-compose.yml file is located)
+sudo docker-compose up -d
+
+# stop one or more docker containers with docker compose (Execute command in directory where docker-compose.yml file is located)
+sudo docker-compose down
+
+#Initialize docker swarm
+sudo docker swarm init
+
+# run one or more docker containers with stack deploy (Execute command in directory where docker-compose-stack.yml file is located)
+sudo docker stack deploy --compose-file docker-compose-stack.yml springbank
+
+# list containers that are deployed as services using stack deploy
+sudo docker services ls
+
+# remove all services that are deployed as part of stack (Where springbank is the name of the stack)
+sudo docker stack rm springbank
+
+
+docker run -d --name axon-server -p 8024:8024 -p 8124:8124 --network springbankNet --restart always axoniq/axonserver:latest
+
+docker run -it -d --name mongo-container -p 27017:27017 --network springbankNet --restart always -v mongodb_data_container:/data/db mongo:latest
+
+docker run -it -d --name mysql-container -p 3306:3306 --network springbankNet -e  MYSQL_ROOT_PASSWORD=springbankrootpsq --restart always -v  mysql_data_container:/var/lib/mysql mysql:latest
+
+docker run -it -d --name adminer -p 8080:8080 --network springbankNet -e ADMINER_DEFAULT_SERVER=mysql-container --restart always adminer:latest
+

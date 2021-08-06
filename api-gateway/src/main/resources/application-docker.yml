@@ -1,0 +1,52 @@
+server:
+  port: 2000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: userCmdApi-RegisterUser
+          uri: http://user-cmd-api:8081/api/v1/registerUser
+          predicates:
+            - Path=/api/v1/registerUser
+
+        - id: userCmdApi-UpdateUser
+          uri: http://user-cmd-api:8081/api/v1/updateUser/**
+          predicates:
+            - Path=/api/v1/updateUser/**
+
+        - id: userCmdApi-RemoveUser
+          uri: http://user-cmd-api:8081/api/v1/removeUser/**
+          predicates:
+            - Path=/api/v1/removeUser/**
+
+        - id: userQueryApi
+          uri: http://user-query-api:8082/api/v1/userLookup/**
+          predicates:
+            - Path=/api/v1/userLookup/**
+
+        - id: bankAccCmdApi-OpenAccount
+          uri: http://bankacc-cmd-api:9091/api/v1/openBankAccount
+          predicates:
+            - Path=/api/v1/openBankAccount
+
+        - id: bankAccCmdApi-DepositFunds
+          uri: http://bankacc-cmd-api:9091/api/v1/depositFunds/**
+          predicates:
+            - Path=/api/v1/depositFunds/**
+
+        - id: bankAccCmdApi-WithdrawFunds
+          uri: http://bankacc-cmd-api:9091/api/v1/withdrawFunds/**
+          predicates:
+            - Path=/api/v1/withdrawFunds/**
+
+        - id: bankAccCmdApi-CloseAccount
+          uri: http://bankacc-cmd-api:9091/api/v1/closeBankAccount/**
+          predicates:
+            - Path=/api/v1/closeBankAccount/**
+
+        - id: bankAccQueryApi
+          uri: http://bankacc-query-api:9092/api/v1/bankAccountLookup/**
+          predicates:
+            - Path=/api/v1/bankAccountLookup/**
+

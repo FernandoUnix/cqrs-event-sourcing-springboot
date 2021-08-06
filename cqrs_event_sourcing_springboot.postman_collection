@@ -1,0 +1,527 @@
+{
+	"info": {
+		"_postman_id": "c3c6f62e-c731-48cd-824f-eeffd94aace9",
+		"name": "CQRS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc0ODg5MTEsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiZmIyYmJhMTMtYTE3OC00YWQyLTg5ZTgtYzA0YjNiNzZmZTEzIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.vH6jMRlGodCKxeqXklmtirBhsiLS3BcL9SHgKXzg4Xg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":{\r\n        \"firstName\" : \"jane\",\r\n        \"lastName\" :\"Doe\",\r\n        \"emailAddress\" : \"jane@email.com\",\r\n        \"account\" : {\r\n            \"username\" : \"jane7\",\r\n            \"password\" : \"root\",\r\n            \"roles\" : [\r\n                \"WRITE_PRIVILEGE\" \r\n            ]\r\n        }\r\n\r\n\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:2000/api/v1/registerUser",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"registerUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":{\r\n        \"firstName\" : \"jane\",\r\n        \"lastName\" :\"Doe\",\r\n        \"emailAddress\" : \"janeupdate@email.com\",\r\n        \"account\" : {\r\n            \"username\" : \"jane\",\r\n            \"password\" : \"root\",\r\n            \"roles\" : [\r\n                \"READ_PRIVILEGE\" ,\"WRITE_PRIVILEGE\" \r\n            ]\r\n        }\r\n\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:2000/api/v1/updateUser/c2e504b3-ab18-4b57-826a-e95151a071f9",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"updateUser",
+						"c2e504b3-ab18-4b57-826a-e95151a071f9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc0ODg5MTEsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiZmIyYmJhMTMtYTE3OC00YWQyLTg5ZTgtYzA0YjNiNzZmZTEzIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.vH6jMRlGodCKxeqXklmtirBhsiLS3BcL9SHgKXzg4Xg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:2000/api/v1/removeUser/31a3ad10-0a1e-4389-ac2c-53c8d14b8126",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"removeUser",
+						"31a3ad10-0a1e-4389-ac2c-53c8d14b8126"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc4MzE3MzQsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiODZlNDZjMjItZTAwYS00MDdlLTgyNjEtNmJhMTIxMWZlNzExIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.e1J4Dp6T9KxGcD5nFpFN71XpzLXEjphSJMeOIQXA50E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2000/api/v1/userLookup/",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"userLookup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc4MzcyOTksInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiMzU3NmMwODItMzFiZS00MWFiLWEyYjItMDI1N2I4NDk5ZmViIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.uGunQVbNY14b9KosQ3P3X5Gio7CMUnVizO9gfkD_Q80",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2000/api/v1/userLookup/byId/82143a59-3e4d-4de8-a0e2-977013179044",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"userLookup",
+						"byId",
+						"82143a59-3e4d-4de8-a0e2-977013179044"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by filter",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc0ODg4MTIsInVzZXJfbmFtZSI6ImphbmUzIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiXSwianRpIjoiNWMzNTZmYzgtYjMwZC00MGRiLTgxNWQtMWNhZGVlMzhkYTIyIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.UjLqOkjG7aR-e7DrZCpQ-y4oInXgQe5otUVhhqxJxAU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2000/api/v1/userLookup/byFilter/jo",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"userLookup",
+						"byFilter",
+						"jo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic c3ByaW5nYmFua0NsaWVudDpzcHJpbmdiYW5rU2VjcmV0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "johnd",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "root",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8084/oauth/token",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Open Bank Account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc4MzcxMTIsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiNTBiYmIwOGMtMmUxNi00NmNkLWEwYmQtZjQ1ZGE4ODNmMjY1IiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.5buB3RiN9R5_-rZiMYvu39NZzCJ4fBY_U4RpLXvzyow",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountHolderId\" : \"82143a59-3e4d-4de8-a0e2-977013179044\",\r\n    \"accountTYpe\" : \"CURRENT\",\r\n    \"openingBalance\" : 100.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:2000/api/v1/openBankAccount",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"openBankAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deposit Funds",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc4Mzk2NzcsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiNTcwNWIwYWItNDBmMS00NDQ3LThlNDUtOWJkOTk5YTFlNDAwIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.G7NmtfCJLg_T-TwAT7y7YvliZnpFA3l3P4HFXMO31yA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\" : 10.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:2000/api/v1/depositFunds/edeb5df6-74f9-4034-9df6-77003ecc5fdd",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"depositFunds",
+						"edeb5df6-74f9-4034-9df6-77003ecc5fdd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "With Draw Funds",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc4Mzk4OTgsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiZDExMmFiZGQtOTZiYi00ODlkLTlmNWEtMjI0YmMwZWRiMGEwIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.j3WieK3CsD2okeWgHXT0g6QSCoFN1JpVYC-cmgQQ_WA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\" : 200.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:2000/api/v1/withdrawFunds/edeb5df6-74f9-4034-9df6-77003ecc5fdd",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"withdrawFunds",
+						"edeb5df6-74f9-4034-9df6-77003ecc5fdd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete/Close bank account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjgxNjg5MzQsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiNDA5MzU1ZDctMWI2Yy00NDQ2LTg0MGUtOGRmMWNlZjM2ZjgxIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.EuUAtwQ-Gi5xfDtYf5-SZYNItqGF8dPt0MM1sHohg2M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:2000/api/v1/closeBankAccount/edeb5df6-74f9-4034-9df6-77003ecc5fdd",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"closeBankAccount",
+						"edeb5df6-74f9-4034-9df6-77003ecc5fdd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all bank account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjgxODI4NzAsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiMmIxZmY5N2EtOWQwMC00MmJkLTk2MWItYTE5NWY0MWJhZGNhIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.enzAz6utbK9xS9cXHPk5QBwXsT8ayq9OL4WJfZaf7JI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2000/api/v1/bankAccountLookup/",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"bankAccountLookup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get bank account by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjgxODI4NzAsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiMmIxZmY5N2EtOWQwMC00MmJkLTk2MWItYTE5NWY0MWJhZGNhIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.enzAz6utbK9xS9cXHPk5QBwXsT8ayq9OL4WJfZaf7JI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2000/api/v1/bankAccountLookup/byId/85032ca3-f206-44dd-8da1-55b790ae0f8c",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"bankAccountLookup",
+						"byId",
+						"85032ca3-f206-44dd-8da1-55b790ae0f8c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get bank account withBalance",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjgxODI4NzAsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiMmIxZmY5N2EtOWQwMC00MmJkLTk2MWItYTE5NWY0MWJhZGNhIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.enzAz6utbK9xS9cXHPk5QBwXsT8ayq9OL4WJfZaf7JI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2000/api/v1/bankAccountLookup/withBalance/GREATER_THAN/110.0",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"bankAccountLookup",
+						"withBalance",
+						"GREATER_THAN",
+						"110.0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get bank account by holder id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjgxODI4NzAsInVzZXJfbmFtZSI6ImpvaG5kIiwiYXV0aG9yaXRpZXMiOlsiUkVBRF9QUklWSUxFR0UiLCJXUklURV9QUklWSUxFR0UiXSwianRpIjoiMmIxZmY5N2EtOWQwMC00MmJkLTk2MWItYTE5NWY0MWJhZGNhIiwiY2xpZW50X2lkIjoic3ByaW5nYmFua0NsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.enzAz6utbK9xS9cXHPk5QBwXsT8ayq9OL4WJfZaf7JI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2000/api/v1/bankAccountLookup/byHolderId/82143a59-3e4d-4de8-a0e2-977013179044",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"bankAccountLookup",
+						"byHolderId",
+						"82143a59-3e4d-4de8-a0e2-977013179044"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
